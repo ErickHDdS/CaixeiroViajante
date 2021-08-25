@@ -5,10 +5,10 @@
 ## Instruções para execução:
 
   ### Força Bruta:
-   1. Acesse a pasta "-" 
-   2. Compila o código "-.java"
-   `javac -.java`
-   3. Rode o código bytecode "Main.class" com `java -.java`
+     1. Acesse a pasta "-" 
+     2. Compila o código "-.java"
+     `javac -.java`
+     3. Rode o código bytecode "Main.class" com `java -.java`
 
   ### Heurística Gulosa:
      1. Acesse a pasta "-" 
