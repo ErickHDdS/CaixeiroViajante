@@ -10,7 +10,7 @@
    `javac -.java`
    3. Rode o código bytecode "Main.class" com `java -.java`
 
-  ### Heurística:
+  ### Heurística Gulosa:
      1. Acesse a pasta "-" 
      2. Compila o código "-.java"
      `javac -.java`
