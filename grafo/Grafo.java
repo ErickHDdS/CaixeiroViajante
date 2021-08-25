@@ -1,9 +1,12 @@
+/*
+ Disponibilizado em Projeto de Algoritmos com implementações em Java e C++
+ Autor: Nivio Ziviani
+*/
 package grafo;
 
 public class Grafo {
 
     public static class Aresta {
-
         private int v1, v2, peso;
 
         public Aresta(int v1, int v2, int peso) {
@@ -24,6 +27,7 @@ public class Grafo {
             return this.v2;
         }
     }
+
     private int mat[][];
     private int numVertices;
     private int pos[];
@@ -33,9 +37,8 @@ public class Grafo {
         this.pos = new int[numVertices];
         this.numVertices = numVertices;
         for (int i = 0; i < this.numVertices; i++) {
-            for (int j = 0; j < this.numVertices; j++) {
+            for (int j = 0; j < this.numVertices; j++) 
                 this.mat[i][j] = 0;
-            }
             this.pos[i] = -1;
         }
     }
@@ -60,26 +63,23 @@ public class Grafo {
     
     public boolean listaAdjVazia(int v) {
         for (int i = 0; i < this.numVertices; i++) {
-            if (this.mat[v][i] > 0) {
+            if (this.mat[v][i] > 0) 
                 return false;
-            }
         }
         return true;
     } 
 
     public Aresta proxAdj(int v) {
         this.pos[v]++;
-        while ((this.pos[v] < this.numVertices) && (this.mat[v][this.pos[v]] == 0)) {
+        while ((this.pos[v] < this.numVertices) && (this.mat[v][this.pos[v]] == 0)) 
             this.pos[v]++;
-        }
-        if (this.pos[v] == this.numVertices) {
+        if (this.pos[v] == this.numVertices) 
             return null;
-        } else {
+        else 
             return new Aresta(v, this.pos[v], this.mat[v][this.pos[v]]);
-        }
     }
     
-    public Aresta menorListaAdjacencia(int v, boolean[] visitados){ //Método criado para encontrar a menor aresta na lista de adjacencias ignorando os vértices já visitados
+    public Aresta menorListaAdjacencia(int v, boolean[] visitados) { //Método criado para encontrar a menor aresta na lista de adjacencias ignorando os vértices já visitados
         int aux, menor = Integer.MAX_VALUE;
         int i, menorI=0;
         for(i=0; i<this.numVertices; i++)  {
@@ -94,9 +94,9 @@ public class Grafo {
     }
     
     public Aresta retiraAresta(int v1, int v2) {
-        if (this.mat[v1][v2] == 0) {
+        if (this.mat[v1][v2] == 0) 
             return null;
-        } else {
+        else {
             Aresta aresta = new Aresta(v1, v2, this.mat[v1][v2]);
             this.mat[v1][v2] = 0;
             return aresta;
@@ -105,15 +105,14 @@ public class Grafo {
 
     public void imprime() {
         System.out.print("   ");
-        for (int i = 0; i < this.numVertices; i++) {
+        for (int i = 0; i < this.numVertices; i++) 
             System.out.print(i + "   ");
-        }
+
         System.out.println();
         for (int i = 0; i < this.numVertices; i++) {
             System.out.print(i + "  ");
-            for (int j = 0; j < this.numVertices; j++) {
+            for (int j = 0; j < this.numVertices; j++)
                 System.out.print(this.mat[i][j] + "   ");
-            }
             System.out.println();
         }
     }

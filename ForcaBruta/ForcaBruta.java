@@ -1,4 +1,4 @@
-package ForcaBruta;
+package forcaBruta;
 
 import grafo.*;
 import grafo.Grafo.*;

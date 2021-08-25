@@ -1,4 +1,4 @@
-package ForcaBruta;
+package forcaBruta;
 
 import grafo.Grafo;
 import java.io.BufferedReader;
@@ -13,15 +13,15 @@ public class TestaForcaBruta {
     public static void criaGrafo(Grafo grafo, int numVertices, int i, int j, int a, int b){
         Random rand = new Random();
         int  n = rand.nextInt(b - a) + a; // numero aleatorio entre a e b
-        if(i == numVertices){
+        if(i == numVertices) {
             return;
         }
-        else if(j < numVertices - 1){
+        else if(j < numVertices - 1) {
             grafo.insereArestaBidirecionada(i, j, n);
             j++;
             criaGrafo(grafo, numVertices, i, j, a, b);
         }
-        else if(j == numVertices - 1){
+        else if(j == numVertices - 1) {
             grafo.insereArestaBidirecionada(i, j, n);
             i++;
             j = i + 1;
@@ -31,7 +31,7 @@ public class TestaForcaBruta {
 
     public static void main(String[] args) throws IOException {
         long time0, time1;
-        double time2;
+        //double time2;
         System.out.print("Digite o numero de vertices: ");
         int numVertices = Integer.parseInt(in.readLine());
         Grafo grafo = new Grafo(numVertices);

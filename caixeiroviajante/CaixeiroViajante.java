@@ -1,10 +1,10 @@
-package caixeiroviajante;
+package caixeiroViajante;
 
 import grafo.Grafo;
 import heuristica.Heuristica;
-import java.io.IOException;
-import lerarquivotsp.LerArquivoTSP;
+import utils.ReadTSP;
 
+import java.io.IOException;
 public class CaixeiroViajante {
 
     public static void main(String[] args) throws IOException {
@@ -12,29 +12,32 @@ public class CaixeiroViajante {
     }
     
     public static void testaHeuristica() throws IOException {
-        int[][] caminho;
-        LerArquivoTSP read;
+        ReadTSP readFile;
         Grafo grafo;
-        Heuristica h;
+        Heuristica heuristica;
         
         for (int i = 0; i < 3; i++) {
             String fileName;
-            if (i == 0) {
-                fileName = "si535";                
+            switch (i) {
+                case 0:
+                    fileName = "si535";
+                    break;
+                case 1:
+                    fileName = "pa561";
+                    break;
+                case 2:
+                    fileName = "si1032";
+                    break;
+                default:
+                    fileName = null;
             }
-            else if (i == 1) {
-                fileName = "pa561";
-            }
-            else {
-                fileName = "si1032";
-            }
-            read = new LerArquivoTSP(fileName);
-            grafo = read.getGrafo();
-            h = new Heuristica(grafo);
-            caminho = h.encontraCaminho();
-            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia encontrada pela heuristica: " + h.getPesoTotal());
-        }
-        
-    }
 
+            readFile = new ReadTSP(fileName);
+            grafo = readFile.getGrafo();
+            heuristica = new Heuristica(grafo);
+            heuristica.encontraCaminho();
+
+            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia calculada pela heuristica: " + heuristica.getPesoTotal());
+        }
+    }
 }

@@ -12,9 +12,8 @@ public class Heuristica {
         this.grafo = grafo;
         this.visitados = new boolean[grafo.numVertices()];
         this.caminho = new int[grafo.numVertices()][3];
-        for(int i=0; i<grafo.numVertices(); i++){
+        for(int i=0; i<grafo.numVertices(); i++)
             this.visitados[i]=false;
-        }
     }
     
     public int[][] encontraCaminho(){
