@@ -15,10 +15,10 @@ public class TestaHeuristica {
             String fileName;
             switch (i) {
                 case 0:
-                    fileName = "si535";
+                    fileName = "pa561";
                     break;
                 case 1:
-                    fileName = "pa561";
+                    fileName = "si535";
                     break;
                 case 2:
                     fileName = "si1032";
@@ -32,7 +32,7 @@ public class TestaHeuristica {
             heuristica = new Heuristica(grafo);
             heuristica.encontraCaminho();
 
-            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia calculada pela heuristica: " + heuristica.getPesoTotal());
+            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia calculada pela Heuristica Gulosa: " + heuristica.getPesoTotal());
         }
     }
 }
