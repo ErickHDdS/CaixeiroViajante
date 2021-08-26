@@ -1,17 +1,12 @@
-package caixeiroViajante;
+package heuristica;
 
 import grafo.Grafo;
-import heuristica.Heuristica;
 import utils.ReadTSP;
 
 import java.io.IOException;
-public class CaixeiroViajante {
+public class TestaHeuristica {
 
     public static void main(String[] args) throws IOException {
-        testaHeuristica();
-    }
-    
-    public static void testaHeuristica() throws IOException {
         ReadTSP readFile;
         Grafo grafo;
         Heuristica heuristica;

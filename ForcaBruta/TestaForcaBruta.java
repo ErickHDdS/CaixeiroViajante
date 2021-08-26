@@ -32,29 +32,27 @@ public class TestaForcaBruta {
     public static void main(String[] args) throws IOException {
         long time0, time1;
         //double time2;
-        System.out.print("Digite o numero de vertices: ");
+        System.out.print("Numero de vertices: ");
         int numVertices = Integer.parseInt(in.readLine());
         Grafo grafo = new Grafo(numVertices);
-        System.out.println("Digite o range de distancia gerada aleatoriamente do menor para o maior");
-        System.out.print("Entre: ");
+        System.out.print("Distancia gerada aleatoriamente do menor para o maior. \nEntre: ");
         int a = Integer.parseInt(in.readLine());
-        System.out.print("e: ");
+        System.out.print("ate: ");
         int b = Integer.parseInt(in.readLine());
         criaGrafo(grafo, numVertices, 0, 1, a, b);
-        System.out.println("Grafo: ");
+        System.out.println("Grafo gerado: ");
         grafo.imprime();
         ForcaBruta f = new ForcaBruta(grafo);
-        System.out.print("\nDigite o ponto de partida: ");
+        System.out.println("\nPonto de partida: ");
         int pontoA = Integer.parseInt(in.readLine());
-        System.out.println();
         time0 = System.nanoTime();
         f.backtracking(pontoA);
         f.solucaoOtima();
         time1 = System.nanoTime();
         NumberFormat formatter = new DecimalFormat("#0.00000");
-        if(((time1 - time0)*Math.pow(10,-9))/60 > 1)
-            System.out.println("\nTempo de execução: " + formatter.format((time1 - time0)*Math.pow(10,-9)/60) + " minuto(s)");
-        else
-            System.out.println("\nTempo de execução: " + formatter.format((time1 - time0)*Math.pow(10,-9)) + " segundo(s)");
+        //if(((time1 - time0)*Math.pow(10,-9))/60 > 1)
+            //System.out.println("\nTempo de execução: " + formatter.format((time1 - time0)*Math.pow(10,-9)/60) + " minuto(s)\n");
+        //else
+            System.out.println("\nTempo de execução: " + formatter.format((time1 - time0)*Math.pow(10,-9)) + " segundo(s)\n");
     }
 }

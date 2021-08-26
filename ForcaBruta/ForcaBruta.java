@@ -51,13 +51,13 @@ public class ForcaBruta {
                     visitadosCopy.add(pontoB);
                     visitadosCopy.add(pontoInicial);
                     distanciaTotal = 0;
-                    System.out.print("Caminho: ");
+                    //System.out.print("Caminho: ");
                     for(int j = 0; j < visitadosCopy.size(); j++){
-                        System.out.print(visitadosCopy.get(j) + " ");
+                        //System.out.print(visitadosCopy.get(j) + " ");
                         if(j < visitadosCopy.size() - 1)
                             distanciaTotal += this.grafo.getPeso((int)visitadosCopy.get(j), (int)visitadosCopy.get(j + 1));
                     }
-                    System.out.println("\nDistancia: " + distanciaTotal);
+                    //System.out.println("\nDistancia: " + distanciaTotal);
                     final ArrayList visitadosCopy2 = new ArrayList(visitadosCopy);
                     this.mapa.put(distanciaTotal, visitadosCopy2);
                     visitadosCopy.remove(visitadosCopy.size() - 1);
