@@ -2,6 +2,7 @@
  Disponibilizado em Projeto de Algoritmos com implementações em Java e C++
  Autor: Nivio Ziviani
 */
+
 package grafo;
 
 public class Grafo {
@@ -28,9 +29,9 @@ public class Grafo {
         }
     }
 
-    private int mat[][];
+    private int mat[][];                                    // pesos do tipo inteiro
     private int numVertices;
-    private int pos[];
+    private int pos[];                                      // posicao atual ao se percorrer os adjs de um vertice v
 
     public Grafo(int numVertices) {
         this.mat = new int[numVertices][numVertices];
@@ -79,7 +80,8 @@ public class Grafo {
             return new Aresta(v, this.pos[v], this.mat[v][this.pos[v]]);
     }
     
-    public Aresta menorListaAdjacencia(int v, boolean[] visitados) { //Método criado para encontrar a menor aresta na lista de adjacencias ignorando os vértices já visitados
+    // Encontrar a menor aresta na lista de adjacencias 
+    public Aresta menorListaAdjacencia(int v, boolean[] visitados) { 
         int aux, menor = Integer.MAX_VALUE;
         int i, menorI=0;
         for(i=0; i<this.numVertices; i++)  {
@@ -95,7 +97,7 @@ public class Grafo {
     
     public Aresta retiraAresta(int v1, int v2) {
         if (this.mat[v1][v2] == 0) 
-            return null;
+            return null;                                                    //Aresta nao existe
         else {
             Aresta aresta = new Aresta(v1, v2, this.mat[v1][v2]);
             this.mat[v1][v2] = 0;

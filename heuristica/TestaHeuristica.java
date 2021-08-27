@@ -7,9 +7,9 @@ import java.io.IOException;
 public class TestaHeuristica {
 
     public static void main(String[] args) throws IOException {
-        ReadTSP readFile;
+        ReadTSP file;
         Grafo grafo;
-        Heuristica heuristica;
+        HeuristicaGulosa heuristicaGulosa;
         
         for (int i = 0; i < 3; i++) {
             String fileName;
@@ -27,12 +27,12 @@ public class TestaHeuristica {
                     fileName = null;
             }
 
-            readFile = new ReadTSP(fileName);
-            grafo = readFile.getGrafo();
-            heuristica = new Heuristica(grafo);
-            heuristica.encontraCaminho();
+            file = new ReadTSP(fileName);
+            grafo = file.getGrafo();
+            heuristicaGulosa = new HeuristicaGulosa(grafo);
+            heuristicaGulosa.encontraCaminho();
 
-            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia calculada pela Heuristica Gulosa: " + heuristica.getPesoTotal());
+            System.out.println("Arquivo: " + fileName + ".tsp\nDistancia calculada pela Heuristica Gulosa: " + heuristicaGulosa.getPesoTotal());
         }
     }
 }
