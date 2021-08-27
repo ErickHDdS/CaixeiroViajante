@@ -17,7 +17,7 @@ public class ForcaBruta {
 
     public void backtracking(int pointA) {
         ArrayList<Integer> visited = new ArrayList<>();
-        ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA); // caminha de A até o vertice
+        ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA);                     // caminha de A até o vertice
         for (int i = 0; i < arestasAdj.size(); i++) {
             int pointC = arestasAdj.get(i).v2();
             visita(visited, pointA, pointA, pointC);
@@ -37,20 +37,17 @@ public class ForcaBruta {
         ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA);
         ArrayList visitedCopy = new ArrayList(visited);
         visitedCopy.add(pointA);
-        for (int i = 0; i < arestasAdj.size(); i++) { // salta o vertice visitado anteriormente e pula-o
-            int pointC = arestasAdj.get(i).v2(); // vertice atual -> pointC
+        for (int i = 0; i < arestasAdj.size(); i++) {                               // salta o vertice visitado anteriormente e pula-o
+            int pointC = arestasAdj.get(i).v2();                                    // vertice atual -> pointC
             if (!visitedCopy.contains(pointC)) {
                 if (visitedCopy.size() == this.grafo.numVertices() - 1) {
                     visitedCopy.add(pointB);
                     visitedCopy.add(pontoInicial);
                     totalDistance = 0;
-                    // System.out.print("Caminho: ");
                     for (int j = 0; j < visitedCopy.size(); j++) {
-                        // System.out.print(visitadosCopy.get(j) + " ");
                         if (j < visitedCopy.size() - 1)
                             totalDistance += this.grafo.getPeso((int) visitedCopy.get(j), (int) visitedCopy.get(j + 1));
                     }
-                    // System.out.println("\nDistancia: " + distanciaTotal);
                     final ArrayList visitedCopy2 = new ArrayList(visitedCopy);
                     this.maps.put(totalDistance, visitedCopy2);
                     visitedCopy.remove(visitedCopy.size() - 1);
@@ -64,7 +61,7 @@ public class ForcaBruta {
 
     public void solucaoOtima() {
         this.shortestDistance = this.maps.keySet().stream().findFirst().get();
-        for (Integer distance : this.maps.keySet()) // menor distancia
+        for (Integer distance : this.maps.keySet())                                 // menor distancia
             if (distance < this.shortestDistance)
                 this.shortestDistance = distance;
         System.out.print("\nMenor caminho: ");

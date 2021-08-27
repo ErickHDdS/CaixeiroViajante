@@ -13,7 +13,7 @@ public class TestaForcaBruta {
 
     public static void criaGrafo(Grafo grafo, int numVertices, int i, int j, int a, int b) {
         Random rand = new Random();
-        int n = rand.nextInt(b - a) + a; // numero aleatorio entre a e b
+        int n = rand.nextInt(b - a) + a;                                    // numero aleatorio entre a e b
         if (i == numVertices) {
             return;
         } else if (j < numVertices - 1) {
