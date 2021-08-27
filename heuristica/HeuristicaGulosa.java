@@ -1,60 +1,69 @@
 package heuristica;
 import grafo.Grafo;
 
-public class HeuristicaGulosa {
-    
-    private Grafo grafo;
-    private boolean[] VerticesVisitados;
-    private int[][] MelhorCaminho;
-    private int pesoTotal;
-    
-    public HeuristicaGulosa(Grafo grafo){
-        this.grafo = grafo;
-        this.VerticesVisitados = new boolean[grafo.numVertices()];
-        this.MelhorCaminho = new int[grafo.numVertices()][3];
+// graph:           Grafo
+// visitsVertices:  Array auxiliar que armazena as visitas á um vertices do grafo
+// bestWay:         Melhor caminho/solução
+// totalDistance:   Soma do peso de todas arestas
 
-        for(int i=0; i<grafo.numVertices(); i++)
-            this.VerticesVisitados[i]=false;
+public class HeuristicaGulosa {
+    private Grafo graph;                    
+    private boolean[] visitsVertices;   
+    private int[][] bestWay;         
+    private int totalDistance;                  
+    
+    public HeuristicaGulosa(Grafo graph){
+        int numVertices = graph.numVertices();
+
+        this.graph = graph;
+        this.visitsVertices = new boolean[numVertices];
+        this.bestWay = new int[graph.numVertices()][3];
+
+        for(int i=0; i < numVertices; i++){
+            this.visitsVertices[i] = false;
+        }
     }
 
-    public boolean visitouTodos(boolean[] VerticesVisitados){
-        for(int i=0; i<VerticesVisitados.length; i++){
-            if(!VerticesVisitados[i])
-                return false;
+    public boolean visitouTodos(boolean[] visitsVertices){
+        boolean result = true;
+        for (boolean vertice : visitsVertices) {
+            if(!vertice){
+                result = false;
+            }
         }
-        return true;
+        return result;
     }
     
     public int[][] encontraCaminho(){
         int vi=0, verticeX, pesoV, i=0;
-        VerticesVisitados[0] = true;
-        for(; visitouTodos(VerticesVisitados)==false; i++) {
-            verticeX=grafo.menorListaAdjacencia(vi, VerticesVisitados).v2();
-            pesoV=grafo.menorListaAdjacencia(vi, VerticesVisitados).peso();
+        visitsVertices[0] = true;
+        for(; visitouTodos(visitsVertices) == false; i++) {
+            verticeX=graph.menorListaAdjacencia(vi, visitsVertices).v2();
+            pesoV=graph.menorListaAdjacencia(vi, visitsVertices).peso();
 
-            MelhorCaminho[i][0]=vi;
-            MelhorCaminho[i][1]=verticeX;
-            MelhorCaminho[i][2]=pesoV;
+            bestWay[i][0] = vi;
+            bestWay[i][1] = verticeX;
+            bestWay[i][2] = pesoV;
 
-            pesoTotal+=pesoV;
+            totalDistance += pesoV;
             vi=verticeX;
-            VerticesVisitados[verticeX] = true;
+            visitsVertices[verticeX] = true;
         }
-        VerticesVisitados[0] = false;
+        visitsVertices[0] = false;
 
-        verticeX=grafo.menorListaAdjacencia(vi, VerticesVisitados).v2();
-        pesoV=grafo.menorListaAdjacencia(vi, VerticesVisitados).peso();
+        verticeX=graph.menorListaAdjacencia(vi, visitsVertices).v2();
+        pesoV=graph.menorListaAdjacencia(vi, visitsVertices).peso();
 
-        MelhorCaminho[i][0]=vi;
-        MelhorCaminho[i][1]=verticeX;
-        MelhorCaminho[i][2]=pesoV;
+        bestWay[i][0] = vi;
+        bestWay[i][1] = verticeX;
+        bestWay[i][2] = pesoV;
 
-        pesoTotal+=pesoV;
+        totalDistance += pesoV;
 
-        return MelhorCaminho;
+        return bestWay;
     }
     
     public int getPesoTotal(){
-        return pesoTotal;
+        return totalDistance;
     }
 }
