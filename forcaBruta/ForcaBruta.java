@@ -5,13 +5,17 @@ import grafo.Grafo.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// graph:               Grafo
+// maps:                Mapa que relaciona o vertice que visitou com a distancia total que percorreu para visita-lo
+// shortestDistance:    Menor distancia (solução ótima)
+
 public class ForcaBruta {
-    private Grafo grafo;
+    private Grafo graph;
     private HashMap<Integer, ArrayList<Integer>> maps;
     private int shortestDistance = 0;
 
-    public ForcaBruta(Grafo grafo) {
-        this.grafo = grafo;
+    public ForcaBruta(Grafo graph) {
+        this.graph = graph;
         this.maps = new HashMap<>();
     }
 
@@ -26,9 +30,9 @@ public class ForcaBruta {
 
     public ArrayList<Aresta> arestasAdj(int v) {
         ArrayList<Aresta> arestas = new ArrayList<>();
-        for (int i = 0; i < this.grafo.numVertices(); i++)
-            if (this.grafo.getPeso(v, i) > 0)
-                arestas.add(new Aresta(v, i, this.grafo.getPeso(v, i)));
+        for (int i = 0; i < this.graph.numVertices(); i++)
+            if (this.graph.getPeso(v, i) > 0)
+                arestas.add(new Aresta(v, i, this.graph.getPeso(v, i)));
         return arestas;
     }
 
@@ -40,13 +44,13 @@ public class ForcaBruta {
         for (int i = 0; i < arestasAdj.size(); i++) {                               // salta o vertice visitado anteriormente e pula-o
             int pointC = arestasAdj.get(i).v2();                                    // vertice atual -> pointC
             if (!visitedCopy.contains(pointC)) {
-                if (visitedCopy.size() == this.grafo.numVertices() - 1) {
+                if (visitedCopy.size() == this.graph.numVertices() - 1) {
                     visitedCopy.add(pointB);
                     visitedCopy.add(pontoInicial);
                     totalDistance = 0;
                     for (int j = 0; j < visitedCopy.size(); j++) {
                         if (j < visitedCopy.size() - 1)
-                            totalDistance += this.grafo.getPeso((int) visitedCopy.get(j), (int) visitedCopy.get(j + 1));
+                            totalDistance += this.graph.getPeso((int) visitedCopy.get(j), (int) visitedCopy.get(j + 1));
                     }
                     final ArrayList visitedCopy2 = new ArrayList(visitedCopy);
                     this.maps.put(totalDistance, visitedCopy2);

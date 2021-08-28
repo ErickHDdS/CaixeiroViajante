@@ -10,7 +10,7 @@ public class HeuristicaGulosa {
     private Grafo graph;                    
     private boolean[] visitsVertices;   
     private int[][] bestWay;         
-    private int totalDistance;                  
+    private int shortestDistance = 0;                  
     
     public HeuristicaGulosa(Grafo graph){
         int numVertices = graph.numVertices();
@@ -45,7 +45,7 @@ public class HeuristicaGulosa {
             bestWay[i][1] = verticeX;
             bestWay[i][2] = pesoV;
 
-            totalDistance += pesoV;
+            shortestDistance += pesoV;
             vi=verticeX;
             visitsVertices[verticeX] = true;
         }
@@ -58,12 +58,12 @@ public class HeuristicaGulosa {
         bestWay[i][1] = verticeX;
         bestWay[i][2] = pesoV;
 
-        totalDistance += pesoV;
+        shortestDistance += pesoV;
 
         return bestWay;
     }
     
     public int getPesoTotal(){
-        return totalDistance;
+        return shortestDistance;
     }
 }
