@@ -54,7 +54,9 @@ public class ForcaBruta {
                     totalDistance = 0;
                     for (int j = 0; j < visitedCopy.size(); j++) {
                         if (j < visitedCopy.size() - 1)
-                            totalDistance += this.graph.getPeso((int) visitedCopy.get(j), (int) visitedCopy.get(j + 1));
+                            totalDistance += this.graph.getPeso(
+                                                (int) visitedCopy.get(j), 
+                                                (int) visitedCopy.get(j + 1));
                     }
                     final ArrayList visitedCopy2 = new ArrayList(visitedCopy);
                     this.maps.put(totalDistance, visitedCopy2);
@@ -69,7 +71,7 @@ public class ForcaBruta {
 
     public void solucaoOtima() {
         this.shortestDistance = this.maps.keySet().stream().findFirst().get();
-        for (Integer distance : this.maps.keySet())                                 // menor distancia
+        for (Integer distance : this.maps.keySet())                             // menor distancia
             if (distance < this.shortestDistance)
                 this.shortestDistance = distance;
         System.out.print("\nMenor caminho: ");
