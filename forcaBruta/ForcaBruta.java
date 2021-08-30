@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // graph:               Grafo
-// maps:                Mapa que relaciona o vertice que visitou com a distancia total que percorreu para visita-lo
+// maps:                Mapa que relaciona o vertice que visitou com a distancia total que percorreu 
+//                      para visita-lo
 // shortestDistance:    Menor distancia (solução ótima)
 
 public class ForcaBruta {
@@ -21,7 +22,9 @@ public class ForcaBruta {
 
     public void backtracking(int pointA) {
         ArrayList<Integer> visited = new ArrayList<>();
-        ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA);                     // caminha de A até o vertice
+        ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA);   
+
+        // caminha de A até o vertice
         for (int i = 0; i < arestasAdj.size(); i++) {
             int pointC = arestasAdj.get(i).v2();
             visita(visited, pointA, pointA, pointC);
@@ -41,8 +44,9 @@ public class ForcaBruta {
         ArrayList<Aresta> arestasAdj = this.arestasAdj(pointA);
         ArrayList visitedCopy = new ArrayList(visited);
         visitedCopy.add(pointA);
-        for (int i = 0; i < arestasAdj.size(); i++) {                               // salta o vertice visitado anteriormente e pula-o
-            int pointC = arestasAdj.get(i).v2();                                    // vertice atual -> pointC
+        // salta o vertice visitado anteriormente e pula-o
+        for (int i = 0; i < arestasAdj.size(); i++) {                               
+            int pointC = arestasAdj.get(i).v2();                                 // vertice atual -> pointC
             if (!visitedCopy.contains(pointC)) {
                 if (visitedCopy.size() == this.graph.numVertices() - 1) {
                     visitedCopy.add(pointB);
